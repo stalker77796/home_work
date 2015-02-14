@@ -2,22 +2,22 @@
 #include <Windows.h>
 using namespace std;
 #include <stdlib.h>
-
-void bubble_sort (int *a,int n) {
-	for (int i=0;i<n-1;++i) {
-		for (int j=0;j<n-1;++j) {
-			if (a[j]>a[j+1]) {
-				int c=a[j];
-				a[j]=a[j+1];
-				a[j+1]=c;
+#include <vector>
+template <typename T>
+void bubble_sort (std::vector<T> &p) {
+	for (size_t i=0;i<p.size();++i) {
+		for (size_t j=0;j<p.size()-1-i;++j) {
+			if (p[j]>p[j+1]) {
+				std::swap(p[j],p[j+1]);
 			}
 		}
 	}
 }
 
-void print (int *a,int n) {
-	for (int i=0;i<n;++i) {
-		cout<<a[i]<<' ';
+template<typename T> 
+void print ( const std::vector <T> &p) {
+	for (size_t i=0;i<p.size();++i) {
+		cout<<p[i]<<' ';
 	}
 }
 
@@ -25,14 +25,14 @@ int main () {
 	int N;
 	cout<<"N=";
 	cin>>N;
-	int *a=new int [N];
+	 std::vector<int> p(N);
 	for (int i=0;i<N;++i) {
-		a[i]=rand()%255;
+		p[i]=rand()%255;
 	}
 
-	bubble_sort (a,N);
+	bubble_sort<int>(p);
 
-	print (a,N);
+	print<int>(p);
 
 	system ("pause");
 }
