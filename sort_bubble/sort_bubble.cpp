@@ -6,9 +6,19 @@ using namespace std;
 #include <algorithm>
 #include <time.h>
 
-clock_t timer_start_time = 0;
-#define reset_timer (timer_start_time = clock())
-#define get_timer_time ((clock() - timer_start_time) / (float)CLOCKS_PER_SEC)
+ class Timer {
+	 clock_t start_time;
+ public:
+	  float get_time  () const  {
+		  return ((clock() - start_time) / (float)CLOCKS_PER_SEC);
+	 }
+	  void reset () {
+		  start_time = clock () ;
+	  }
+	  Timer () {
+		  reset ();
+	  }
+ };
 
 template <typename T>
 void bubble_sort (std::vector<T> &p) {
@@ -30,6 +40,7 @@ void print ( const std::vector <T> &p) {
 }
 
 int main () {
+	Timer timer;
 	int N = 1;
 	for  (int i=0;i<4;++i) {
 		N *= 10;
@@ -40,13 +51,13 @@ int main () {
 		}
 		std::vector<int> u=p;
 
-		reset_timer;
+		timer.reset() ;
 		std::sort(p.begin(),p.end());
-		std::cout << get_timer_time << "s    " ;
+		std::cout << timer.get_time() << "s    " ;
 		
-		reset_timer;
+		timer.reset () ;
 		bubble_sort<int>(u);
-		std::cout << get_timer_time << "s" << std::endl;
+		std::cout << timer.get_time() << "s" << std::endl;
 	}
 
 	//print<int>(p);
