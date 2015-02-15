@@ -40,10 +40,28 @@ void print ( const std::vector <T> &p) {
 }
 
 int main () {
+	int N1;
+	cout <<"Input array size N1=  ";
+	cin >>N1;
+	vector<int>ar1(N1);
+	for (int i=0;i<N1;++i ) {
+		ar1[i]= rand() %255;
+	}
+	print (ar1);
+	cout <<endl;
+	 bubble_sort (ar1);
+	 print (ar1);
+	 cout <<endl;
+	 
+	
+	
+
+
+
 	Timer timer;
 	int N = 1;
 	for  (int i=0;i<4;++i) {
-		N *= 10;
+		N *= 8;
 		std::cout <<N<<": ";
 		std::vector<int> p(N);
 		for (int i=0;i<N;++i) {
